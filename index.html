@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chayapol Pannak (Copter) | CEDT Chula Portfolio</title>
+  <meta name="description" content="Official Portfolio of Chayapol Pannak — Aspiring Computer & Digital Technology Engineer for CEDT Chulalongkorn University (TCAS70)">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cyan: '#00d2ff',
+              pink: '#de006a',
+              dark: '#090d16',
+              card: 'rgba(16, 23, 38, 0.7)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#090d16] text-slate-100 min-h-screen relative selection:bg-cyan-500 selection:text-black">
+
+  <!-- Background Animated Mesh & Canvas -->
+  <div class="bg-mesh-glow"></div>
+  <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- Sticky Glassmorphic Navbar -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-2 group">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-cyan-500 to-pink-500 flex items-center justify-center font-bold text-black font-mono shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+          CP
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-sm tracking-wide text-white group-hover:text-cyan-400 transition-colors">CHAYAPOL.P</span>
+          <span class="text-[10px] text-pink-400 font-mono font-medium tracking-wider">CEDT @ CHULA CANDIDATE</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-cyan-400 transition-colors">เกี่ยวกับผม</a>
+        <a href="#skills" class="hover:text-cyan-400 transition-colors">ทักษะ (Skills)</a>
+        <a href="#flagship" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+          <span class="inline-block w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
+          GeoWrisX
+        </a>
+        <a href="#projects" class="hover:text-cyan-400 transition-colors">โครงงาน & การแข่งขัน</a>
+        <a href="#roadmap" class="hover:text-cyan-400 transition-colors">ไทม์ไลน์</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="https://github.com" target="_blank" class="px-3.5 py-1.5 rounded-lg border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-xs font-mono flex items-center gap-2 text-slate-200 transition-all hover:border-cyan-500/50">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          GitHub
+        </a>
+        <a href="#contact" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold text-xs tracking-wide shadow-md shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
+          ติดต่อเรา
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white p-2">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800 px-4 py-4 space-y-3">
+      <a href="#about" class="block mobile-nav-link text-sm py-1 hover:text-cyan-400">เกี่ยวกับผม</a>
+      <a href="#skills" class="block mobile-nav-link text-sm py-1 hover:text-cyan-400">ทักษะ (Skills)</a>
+      <a href="#flagship" class="block mobile-nav-link text-sm py-1 hover:text-cyan-400">GeoWrisX (Flagship)</a>
+      <a href="#projects" class="block mobile-nav-link text-sm py-1 hover:text-cyan-400">โครงงาน & การแข่งขัน</a>
+      <a href="#roadmap" class="block mobile-nav-link text-sm py-1 hover:text-cyan-400">ไทม์ไลน์</a>
+      <a href="#contact" class="block mobile-nav-link text-sm py-1 text-cyan-400 font-semibold">ติดต่อเรา</a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 space-y-28">
+
+    <!-- 1. HERO SECTION -->
+    <section id="hero" class="pt-10 pb-6 flex flex-col items-center text-center space-y-6">
+      
+      <!-- Target Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-pink-500/30 bg-pink-500/10 text-pink-300 text-xs font-mono tracking-wide shadow-lg shadow-pink-500/10 animate-bounce">
+        <span class="w-2 h-2 rounded-full bg-pink-500"></span>
+        <span>มุ่งสู่ วิศวะคอมพิวเตอร์และเทคโนโลยีดิจิทัล (CEDT) จุฬาฯ • TCAS70</span>
+      </div>
+
+      <!-- Name & Grand Title -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight">
+        สวัสดีครับ ผม <span class="text-gradient">ชยพล ปานนาค</span> (คอปเตอร์)
+      </h1>
+
+      <!-- Dynamic Typing Text -->
+      <div class="h-8 sm:h-10 text-lg sm:text-2xl font-mono text-cyan-300 flex items-center justify-center gap-1">
+        <span class="text-slate-400">&gt; </span>
+        <span id="typing-text" class="border-r-2 border-cyan-400 pr-1 animate-pulse"></span>
+      </div>
+
+      <!-- Bio Pitch -->
+      <p class="max-w-2xl text-slate-400 text-sm sm:text-base leading-relaxed">
+        นักเรียนชั้นมัธยมศึกษาปีที่ 5 โรงเรียนเตรียมอุดมศึกษาพัฒนาการ ปทุมธานี ผู้หลงใหลการสร้างสรรค์นวัตกรรม
+        <strong class="text-slate-200">IoT, Embedded Systems, Edge AI</strong> และ <strong class="text-slate-200">Full-Stack Cloud</strong> เพื่อแก้ปัญหาจริงในสังคม
+      </p>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-3xl pt-4">
+        <div class="glass-panel p-4 rounded-xl text-center">
+          <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono">1</div>
+          <div class="text-xs text-slate-400 mt-1">Flagship IoT Health Project</div>
+        </div>
+        <div class="glass-panel p-4 rounded-xl text-center">
+          <div class="text-2xl sm:text-3xl font-extrabold text-pink-400 font-mono">96.8%</div>
+          <div class="text-xs text-slate-400 mt-1">Geofence Accuracy</div>
+        </div>
+        <div class="glass-panel p-4 rounded-xl text-center">
+          <div class="text-2xl sm:text-3xl font-extrabold text-indigo-400 font-mono">NSC</div>
+          <div class="text-xs text-slate-400 mt-1">Contender 2570</div>
+        </div>
+        <div class="glass-panel p-4 rounded-xl text-center">
+          <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono">3.00+</div>
+          <div class="text-xs text-slate-400 mt-1">GPAX Target</div>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+        <a href="#flagship" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-bold text-sm tracking-wide shadow-lg shadow-cyan-500/25 flex items-center gap-2 transform hover:-translate-y-0.5 transition-all">
+          <i data-lucide="layers" class="w-4 h-4"></i>
+          ดูผลงานเด่น GeoWrisX
+        </a>
+        <a href="#projects" class="px-6 py-3 rounded-xl border border-slate-700 hover:border-cyan-500/50 bg-slate-900/60 hover:bg-slate-800 text-slate-200 font-semibold text-sm flex items-center gap-2 transition-all">
+          <i data-lucide="code-2" class="w-4 h-4"></i>
+          คลังโครงงานทั้งหมด
+        </a>
+      </div>
+
+    </section>
+
+    <!-- 2. ABOUT ME & STATEMENT OF PURPOSE -->
+    <section id="about" class="space-y-8">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+          <i data-lucide="user" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-white">เกี่ยวกับผม (About Me)</h2>
+          <p class="text-xs text-slate-400 font-mono">PERSONAL PROFILE & ENGINEERING VISION</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Education Card -->
+        <div class="glass-panel p-6 rounded-2xl space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-pink-400">
+            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">การศึกษา (Education)</h3>
+          <p class="text-sm text-slate-300">
+            <strong>โรงเรียนเตรียมอุดมศึกษาพัฒนาการ ปทุมธานี</strong><br>
+            ระดับมัธยมศึกษาตอนปลาย (ม.5/5)<br>
+            แผนการเรียนวิทยาศาสตร์-คณิตศาสตร์ / เทคโนโลยี
+          </p>
+          <div class="pt-2 text-xs text-slate-400 font-mono">
+            เป้าหมาย: นิสิต CEDT วิศวะคอมพิวเตอร์ จุฬาฯ (TCAS70)
+          </div>
+        </div>
+
+        <!-- Vision Card -->
+        <div class="glass-panel p-6 rounded-2xl space-y-4 md:col-span-2">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+            <i data-lucide="compass" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">เป้าหมายและวิสัยทัศน์ทางวิศวกรรม (Engineering Philosophy)</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            "ผมเชื่อว่าเทคโนโลยีที่ดีที่สุด ไม่ใช่เทคโนโลยีที่ซับซ้อนที่สุด แต่เป็นเทคโนโลยีที่ถูกออกแบบมาให้ <strong class="text-cyan-400">เรียบง่าย เชื่อถือได้ และแก้ปัญหาชีวิตของผู้คนได้จริง</strong><br><br>
+            ในฐานะนักพัฒนา ผมชอบการต่อยอดตั้งแต่ระดับ **Hardware Sensors (ESP32, Microcontroller)** ส่งผ่านโปรโตคอลไร้สาย **(BLE, Wi-Fi)** ขึ้นสู่ **Cloud Server & AI** เพื่อสร้างโซลูชันที่ดูแลสุขภาพของผู้คนอย่างไร้รอยต่อ นั่นคือเหตุผลที่ผมต้องการเข้ามาเป็นส่วนหนึ่งของภาควิชา CEDT จุฬาฯ เพื่อผลักดันนวัตกรรมด้านดิจิทัลในระดับประเทศ"
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SKILLS MATRIX -->
+    <section id="skills" class="space-y-8">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-pink-400">
+          <i data-lucide="cpu" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-white">ทักษะทางเทคนิค (Skills Matrix)</h2>
+          <p class="text-xs text-slate-400 font-mono">CORE COMPETENCIES & TECH STACK</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Category 1: Embedded & Hardware -->
+        <div class="glass-panel p-5 rounded-2xl space-y-4">
+          <div class="flex items-center gap-2 text-cyan-400 font-bold text-sm">
+            <i data-lucide="circuit-board" class="w-4 h-4"></i>
+            Embedded & IoT
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-pill">ESP32</span>
+            <span class="tech-pill">M5StickC Plus2</span>
+            <span class="tech-pill">C / C++</span>
+            <span class="tech-pill">BLE 5.0</span>
+            <span class="tech-pill">DHT22 Sensors</span>
+            <span class="tech-pill">PlatformIO</span>
+          </div>
+        </div>
+
+        <!-- Category 2: Software & Cloud -->
+        <div class="glass-panel p-5 rounded-2xl space-y-4">
+          <div class="flex items-center gap-2 text-pink-400 font-bold text-sm">
+            <i data-lucide="globe" class="w-4 h-4"></i>
+            Software & Cloud
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">FastAPI</span>
+            <span class="tech-pill">Next.js 14</span>
+            <span class="tech-pill">TypeScript</span>
+            <span class="tech-pill">TailwindCSS</span>
+            <span class="tech-pill">Supabase</span>
+          </div>
+        </div>
+
+        <!-- Category 3: AI & Algorithms -->
+        <div class="glass-panel p-5 rounded-2xl space-y-4">
+          <div class="flex items-center gap-2 text-indigo-400 font-bold text-sm">
+            <i data-lucide="brain-circuit" class="w-4 h-4"></i>
+            AI & Algorithms
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-pill">Haversine Algo</span>
+            <span class="tech-pill">Geofencing</span>
+            <span class="tech-pill">Edge AI / TinyML</span>
+            <span class="tech-pill">LLM API (Gemini)</span>
+            <span class="tech-pill">OpenCV Basics</span>
+          </div>
+        </div>
+
+        <!-- Category 4: Engineering Workflow -->
+        <div class="glass-panel p-5 rounded-2xl space-y-4">
+          <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+            <i data-lucide="git-branch" class="w-4 h-4"></i>
+            Engineering Workflow
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-pill">Git Workflow</span>
+            <span class="tech-pill">Semantic Commits</span>
+            <span class="tech-pill">TDD Principles</span>
+            <span class="tech-pill">Docker</span>
+            <span class="tech-pill">CI/CD Actions</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FLAGSHIP PROJECT: GEOWRISX -->
+    <section id="flagship" class="space-y-8">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+            <i data-lucide="star" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white">โครงงานหลักระดับมาสเตอร์พีซ (Flagship Project)</h2>
+            <p class="text-xs text-slate-400 font-mono">NATIONAL SOFTWARE CONTEST & TCAS CANDIDATE</p>
+          </div>
+        </div>
+        <span class="hidden sm:inline-block px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/30 text-xs font-mono font-semibold">
+          🏆 OCOP / NSC CONTENDER
+        </span>
+      </div>
+
+      <!-- Feature Card -->
+      <div class="animated-border">
+        <div class="bg-slate-900/90 rounded-2xl p-6 sm:p-8 space-y-6">
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+            <div>
+              <div class="flex items-center gap-3">
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">GeoWrisX</h3>
+                <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-mono">IoT + Health-Tech</span>
+              </div>
+              <p class="text-sm text-slate-400 mt-1">
+                ระบบตรวจจับและแจ้งเตือนการลืมพกยากลางแจ้งสำหรับผู้ป่วยความดันโลหิตสูงด้วย Geofencing, BLE Wristband และ Smart Pillbox
+              </p>
+            </div>
+            
+            <div class="flex gap-3">
+              <button onclick="openArchitectureModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-mono flex items-center gap-2 transition-all">
+                <i data-lucide="eye" class="w-4 h-4"></i>
+                ดู System Architecture
+              </button>
+            </div>
+          </div>
+
+          <!-- 3-Column Highlight Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="space-y-2">
+              <h4 class="text-xs font-mono text-cyan-400 tracking-wider">01. THE PROBLEM & RESEARCH GAP</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                ผู้ป่วยโรคความดันโลหิตสูงมักลืมพกยาเมื่อออกนอกบ้าน นำไปสู่ความเสี่ยงอัมพฤกษ์หรือหัวใจวาย กล่องยาอัจฉริยะทั่วไปในปัจจุบันแจ้งเตือนได้เฉพาะในบ้าน ยังไม่มีระบบใดตรวจจับการก้าวพ้นขอบบ้านแล้วส่งเตือนไปที่สายรัดข้อมือแบบอัตโนมัติ
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <h4 class="text-xs font-mono text-pink-400 tracking-wider">02. TECHNICAL ARCHITECTURE</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                ผสานการคำนวณ <strong>Haversine Circle Geofencing</strong> ตรวจจับการก้าวออกนอกพื้นที่บ้าน ร่วมกับ <strong>BLE Proximity RSSI Scanning</strong> ระหว่างกล่องยากับสายรัดข้อมือ M5StickC Plus2 หากสัญญาณขาดหาย ระบบจะสั่น Buzzer และเตือนผ่านแอปผู้ดูแลทันที
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <h4 class="text-xs font-mono text-emerald-400 tracking-wider">03. PERFORMANCE METRICS</h4>
+              <ul class="text-xs text-slate-300 space-y-1.5 font-mono">
+                <li>• Geofence Exit Detection: <strong>96.8%</strong></li>
+                <li>• BLE Alert Latency: <strong>&lt; 450 ms</strong></li>
+                <li>• Sensor Accuracy (Temp/Humidity): <strong>WHO Compliant</strong></li>
+                <li>• Battery Life: <strong>14+ Hours Low-Power</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tech Tags & Role -->
+          <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-pill text-cyan-400">ESP32</span>
+              <span class="tech-pill text-cyan-400">M5StickC Plus2</span>
+              <span class="tech-pill text-cyan-400">BLE 5.0</span>
+              <span class="tech-pill text-cyan-400">FastAPI</span>
+              <span class="tech-pill text-cyan-400">Haversine GPS</span>
+            </div>
+            <div class="text-slate-400 font-mono">
+              บทบาทของผม: <strong class="text-slate-200">System Architecture, Firmware ESP32 & BLE Protocol</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PROJECTS & CONTESTS GRID (FILTERABLE) -->
+    <section id="projects" class="space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <i data-lucide="folder-git-2" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white">คลังผลงานและการแข่งขัน (Projects & Competitions)</h2>
+            <p class="text-xs text-slate-400 font-mono">EXPLORE MY WORKS FOR CEDT PORTFOLIO</p>
+          </div>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2">
+          <button class="filter-btn px-3 py-1.5 rounded-lg border border-cyan-500/50 bg-cyan-500/20 text-cyan-400 text-xs font-mono transition-all" data-filter="all">ทั้งหมด (All)</button>
+          <button class="filter-btn px-3 py-1.5 rounded-lg border border-white/5 bg-slate-800/60 text-slate-400 text-xs font-mono hover:text-white transition-all" data-filter="iot">IoT / Hardware</button>
+          <button class="filter-btn px-3 py-1.5 rounded-lg border border-white/5 bg-slate-800/60 text-slate-400 text-xs font-mono hover:text-white transition-all" data-filter="ai">AI / Web</button>
+          <button class="filter-btn px-3 py-1.5 rounded-lg border border-white/5 bg-slate-800/60 text-slate-400 text-xs font-mono hover:text-white transition-all" data-filter="contest">การแข่งขัน (Contests)</button>
+        </div>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1: GeoWrisX -->
+        <div class="project-card glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4" data-category="iot contest">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">IoT & HealthTech</span>
+              <span class="text-[10px] font-mono text-slate-400">NSC 2570</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">GeoWrisX: Smart Pillbox</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              ระบบกล่องยาตรวจจับการก้าวข้าม Geofence ร่วมกับ BLE Wristband เตือนการลืมพกยากลางแจ้ง
+            </p>
+          </div>
+          <div class="space-y-3 pt-2 border-t border-slate-800/80">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tech-pill">ESP32</span>
+              <span class="tech-pill">M5StickC</span>
+              <span class="tech-pill">BLE</span>
+            </div>
+            <a href="#flagship" class="text-xs text-cyan-400 hover:underline flex items-center gap-1 font-mono">
+              ดูรายละเอียดเพิ่มเติม <i data-lucide="arrow-right" class="w-3 h-3"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: ThaiEd AI -->
+        <div class="project-card glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4" data-category="ai">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-pink-500/10 text-pink-400 border border-pink-500/20">AI / Education</span>
+              <span class="text-[10px] font-mono text-slate-400">Web App</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">ThaiEd AI: Code Mentor</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              เว็บแอปตรวจจับและวิเคราะห์โค้ด Python/C++ สำหรับนักเรียนไทย อธิบายจุดผิดเป็นภาษาไทยโดยไม่สปอยล์คำตอบ
+            </p>
+          </div>
+          <div class="space-y-3 pt-2 border-t border-slate-800/80">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tech-pill">Next.js 14</span>
+              <span class="tech-pill">FastAPI</span>
+              <span class="tech-pill">Gemini API</span>
+            </div>
+            <span class="text-xs text-slate-500 font-mono flex items-center gap-1">
+              <i data-lucide="clock" class="w-3 h-3"></i> กำลังพัฒนา
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 3: COMPAS Practice Suite -->
+        <div class="project-card glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4" data-category="contest">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Competition</span>
+              <span class="text-[10px] font-mono text-slate-400">Chula CP</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">COMPAS Exam Suite</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              ชุดโจทย์และแบบฝึกแก้ปัญหาเชิงอัลกอริทึม Python / C++ สำหรับการสอบวัดระดับ COMPAS ภาควิชาวิศวะคอมพิวเตอร์ จุฬาฯ
+            </p>
+          </div>
+          <div class="space-y-3 pt-2 border-t border-slate-800/80">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">C++</span>
+              <span class="tech-pill">Data Structures</span>
+            </div>
+            <span class="text-xs text-amber-400 font-mono">
+              Award of Excellence Target
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 4: Zettel-Study -->
+        <div class="project-card glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4" data-category="ai">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Gamification</span>
+              <span class="text-[10px] font-mono text-slate-400">TCAS Tool</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Zettel-Study Planner</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              แพลตฟอร์มวางแผนอ่านหนังสือเตรียมสอบ TGAT/TPAT3/A-Level พร้อมระบบ Level และ Quest สไตล์ RPG
+            </p>
+          </div>
+          <div class="space-y-3 pt-2 border-t border-slate-800/80">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tech-pill">React</span>
+              <span class="tech-pill">Tailwind</span>
+              <span class="tech-pill">Supabase</span>
+            </div>
+            <span class="text-xs text-slate-500 font-mono flex items-center gap-1">
+              <i data-lucide="sparkles" class="w-3 h-3"></i> แนวคิดต้นแบบ
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 5: TEMPLATE FOR NEW PROJECT (USER CAN COPY/EDIT) -->
+        <div class="project-card border-2 border-dashed border-slate-700/60 rounded-2xl p-6 flex flex-col items-center justify-center text-center space-y-3 hover:border-cyan-500/50 transition-colors group cursor-pointer" data-category="all iot ai contest">
+          <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 group-hover:text-cyan-400 group-hover:scale-110 transition-all">
+            <i data-lucide="plus" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-slate-300 group-hover:text-white">เพิ่มผลงานใหม่ (Template Card)</h4>
+            <p class="text-[11px] text-slate-500 mt-1 max-w-xs">
+              สามารถคัดลอกบล็อกโค้ดใน index.html ไปวางเพิ่มผลงาน Hackathon หรือผลงานใหม่ๆ ได้อย่างง่ายดาย
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. ROADMAP & TIMELINE -->
+    <section id="roadmap" class="space-y-8">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+          <i data-lucide="milestone" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-white">เส้นทางสู่ CEDT จุฬาฯ (Roadmap)</h2>
+          <p class="text-xs text-slate-400 font-mono">TCAS70 PREPARATION TIMELINE</p>
+        </div>
+      </div>
+
+      <div class="relative border-l border-slate-800 ml-4 pl-6 space-y-8">
+        <!-- Step 1 -->
+        <div class="relative group">
+          <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-cyan-500 border-4 border-[#090d16] group-hover:scale-125 transition-transform"></span>
+          <span class="text-xs font-mono text-cyan-400">กุมภาพันธ์ 2570</span>
+          <h4 class="text-base font-bold text-white mt-0.5">นิทรรศการ OCOP โรงเรียนเตรียมอุดมศึกษาพัฒนาการ ปทุมธานี</h4>
+          <p class="text-xs text-slate-400 mt-1">จัดแสดงโครงงานต้นแบบ GeoWrisX สู่สาธารณชนและคณะกรรมการวิชาการ</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative group">
+          <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-pink-500 border-4 border-[#090d16] group-hover:scale-125 transition-transform"></span>
+          <span class="text-xs font-mono text-pink-400">พฤษภาคม 2570</span>
+          <h4 class="text-base font-bold text-white mt-0.5">ส่งผลงานเข้าประกวด NSC 2570 (National Software Contest)</h4>
+          <p class="text-xs text-slate-400 mt-1">ยื่นข้อเสนอโครงการหมวดซอฟต์แวร์สุขภาพ/IoT สู่การแข่งขันระดับประเทศ</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative group">
+          <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-indigo-500 border-4 border-[#090d16] group-hover:scale-125 transition-transform"></span>
+          <span class="text-xs font-mono text-indigo-400">ตุลาคม 2570</span>
+          <h4 class="text-base font-bold text-white mt-0.5">สอบ COMPAS ภาควิชาวิศวะคอมฯ จุฬาฯ</h4>
+          <p class="text-xs text-slate-400 mt-1">มุ่งคว้าเหรียญ Award of Excellence เพื่อการันตีคุณสมบัติรอบ Portfolio</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative group">
+          <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-[#090d16] group-hover:scale-125 transition-transform"></span>
+          <span class="text-xs font-mono text-emerald-400">ธันวาคม 2570</span>
+          <h4 class="text-base font-bold text-white mt-0.5">ยื่น Portfolio รอบ 1 CEDT จุฬาลงกรณ์มหาวิทยาลัย 🎉</h4>
+          <p class="text-xs text-slate-400 mt-1">ส่งแฟ้มสะสมผลงาน 10 หน้า พร้อมลิงก์ Web Portfolio และ GitHub อย่างเป็นทางการ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CONTACT & FOOTER -->
+    <section id="contact" class="glass-panel rounded-3xl p-8 sm:p-12 text-center space-y-6">
+      <div class="max-w-xl mx-auto space-y-3">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">ร่วมสร้างสรรค์และติดต่อพูดคุย</h2>
+        <p class="text-sm text-slate-400">
+          ยินดีรับฟังคำแนะนำ แลกเปลี่ยนความคิดเห็นด้าน IoT และซอฟต์แวร์ หรือปรึกษาการทำโครงงาน
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+        <a href="mailto:contact@example.com" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-mono flex items-center gap-2 transition-all">
+          <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i>
+          ส่งอีเมลถึงผม
+        </a>
+        <a href="https://github.com" target="_blank" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-mono flex items-center gap-2 transition-all">
+          <i data-lucide="github" class="w-4 h-4 text-pink-400"></i>
+          GitHub Profile
+        </a>
+      </div>
+
+      <div class="pt-8 border-t border-slate-800/80 text-xs text-slate-500 font-mono">
+        © 2026 Chayapol Pannak (Copter) • Designed with pride for CEDT Chulalongkorn University Admission (TCAS70)
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ARCHITECTURE MODAL -->
+  <div id="architecture-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="bg-slate-900 border border-cyan-500/40 rounded-2xl max-w-2xl w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <i data-lucide="network" class="w-5 h-5 text-cyan-400"></i>
+          GeoWrisX: System Architecture Diagram
+        </h3>
+        <button onclick="closeArchitectureModal()" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Diagram Flow Representation -->
+      <div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-slate-300 space-y-3 border border-slate-800 overflow-x-auto">
+        <div class="text-cyan-400 font-bold">[1. Patient Hardware Layer]</div>
+        <div class="pl-4 border-l-2 border-cyan-500/40 space-y-1">
+          <div>• ESP32 Smart Pillbox (9 Slots + DHT22 Temp/Humidity + Light Sensor)</div>
+          <div>• M5StickC Plus2 Wristband (BLE Receiver + Buzzer + OLED Display)</div>
+        </div>
+
+        <div class="text-pink-400 font-bold">[2. Communication & Proximity Protocol]</div>
+        <div class="pl-4 border-l-2 border-pink-500/40 space-y-1">
+          <div>• Bluetooth Low Energy (BLE 5.0) RSSI Monitoring (0 - 10 Meters)</div>
+          <div>• Wi-Fi 802.11 b/g/n Telemetry Sync</div>
+        </div>
+
+        <div class="text-indigo-400 font-bold">[3. Geofencing & Cloud Engine]</div>
+        <div class="pl-4 border-l-2 border-indigo-500/40 space-y-1">
+          <div>• Mobile GPS Position ➔ Haversine Formula Distance Computation</div>
+          <div>• Exit Event Trigger ➔ Check BLE Signal ➔ Immediate Wristband Alarm</div>
+          <div>• FastAPI Backend + Supabase Database</div>
+        </div>
+      </div>
+
+      <div class="text-right">
+        <button onclick="closeArchitectureModal()" class="px-4 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-xs font-mono">
+          ปิดหน้าต่าง
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lucide Icon Renderer -->
+  <script>
+    lucide.createIcons();
+  </script>
+  
+  <script src="script.js"></script>
+</body>
+</html>

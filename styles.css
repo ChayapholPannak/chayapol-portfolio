@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #00d2ff;
+  --primary-glow: rgba(0, 210, 255, 0.35);
+  --chula-pink: #de006a;
+  --chula-glow: rgba(222, 0, 106, 0.35);
+  --bg-dark: #090d16;
+  --card-bg: rgba(16, 23, 38, 0.7);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-border-hover: rgba(0, 210, 255, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Prompt', sans-serif;
+  background-color: var(--bg-dark);
+  color: #f1f5f9;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.font-mono {
+  font-family: 'Fira Code', monospace;
+}
+
+/* Glassmorphism Effect */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: 0 10px 30px -10px var(--primary-glow);
+}
+
+.glass-nav {
+  background: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Gradients */
+.text-gradient {
+  background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 50%, #de006a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-chula {
+  background: linear-gradient(135deg, #ff758c 0%, #de006a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-mesh-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(0, 210, 255, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(222, 0, 106, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(99, 102, 241, 0.06) 0%, transparent 50%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Animated Border */
+.animated-border {
+  position: relative;
+  border-radius: 1rem;
+  z-index: 1;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #00d2ff, #de006a, #6366f1, #00d2ff);
+  background-size: 300% 300%;
+  animation: borderRotate 6s linear infinite;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+@keyframes borderRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.tech-pill {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.tech-pill:hover {
+  color: #00d2ff;
+  border-color: rgba(0, 210, 255, 0.4);
+  background: rgba(0, 210, 255, 0.08);
+}
